@@ -1,0 +1,47 @@
+<?php
+/**
+ * @var GenericPaynlMethod $magewire
+ * @var Escaper $escaper
+ * @var PaymentMethod $method
+ * @var Template $block
+ */
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod;
+use Paynl\Payment\Model\Paymentmethod\PaymentMethod;
+
+$method = $block->getData('method');
+$magewire->registerMethodCode($block->getData('method_code'));
+?>
+<div>
+    <p><?=$magewire->instructions ?></p>
+
+    <?php if ($magewire->showDOB()): ?>
+        <div class="relative text-sm mb-4">
+            <label class="-top-[10px] left-[10px] absolute bg-[#fafafa] px-1" for="dob"><?= $escaper->escapeHtml(__('Date of birth')) ?></label>
+            <input wire:model.delay.750ms="dateofbirth" class="border border-[#c2c2c2] px-3 py-4 rounded-md bg-transparent text-sm w-full" type="date" id="dob" name="dateofbirth" placeholder="mm/dd/yyyy"/>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($magewire->showKVK()): ?>
+        <div class="relative text-sm mb-4">
+            <label class="-top-[10px] left-[10px] absolute bg-[#fafafa] px-1" for="kvknummer"><?= $escaper->escapeHtml(__('COC number')) ?></label>
+            <input wire:model.delay.750ms="kvknummer" class="border border-[#c2c2c2] px-3 py-4 rounded-md bg-transparent text-sm w-full" type="text" id="kvknummer" name="kvknummer" placeholder="xxxxxxxx"/>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($magewire->showVAT()): ?>
+        <div class="relative text-sm mb-4">
+            <label class="-top-[10px] left-[10px] absolute bg-[#fafafa] px-1" for="vatnumber"><?= $escaper->escapeHtml(__('VAT-id')) ?></label>
+            <input wire:model.delay.750ms="vatnummer" class="border border-[#c2c2c2] px-3 py-4 rounded-md bg-transparent text-sm w-full" type="text" id="vatnumber" name="vatnumber" placeholder="xxxxxxxxxxxxxx"/>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($magewire->showKVKAgree()): ?>
+        <div class="flex items-center gap-1.5">
+            <input type="checkbox" wire:model="billinkAgree" />
+            <label for="billink_agree">U dient akkoord te gaan met de</label> <a class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600" target="_blank" href="https://billink.nl/voorwaarden/gebruikersvoorwaarden.pdf">betalingsvoorwaarden</a>
+        </div>
+    <?php endif; ?>
+</div>

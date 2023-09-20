@@ -1,0 +1,43 @@
+<?php
+/**
+ * @var Escaper $escaper
+ * @var Ideal $magewire
+ */
+
+use Magento\Framework\Escaper;
+use Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\Ideal;
+
+?>
+<div>
+    <p class="mb-4"><?= $magewire->instructions ?></p>
+    <?php if ($magewire->displayMode === Ideal::DISPLAY_MODE_DROPDOWN) :?>
+    <div class="field-select-billing">
+        <select wire:model.defer="selectedIssuer" wire:select.debounce.750ms.blur>
+            <?php foreach($magewire->issuers as $issuer): ?>
+                <option value="<?= $issuer['id'] ?>"><?= $issuer['visibleName'] ?></option>
+            <?php endforeach;?>
+        </select>
+    </div>
+    <?php elseif ($magewire->displayMode === Ideal::DISPLAY_MODE_LIST) :?>
+    <div class="field-select-billing">
+        <span><?= $escaper->escapeHtml(__('Choose your bank')) ?></span>
+        <ul class="mt-4">
+            <?php foreach ($magewire->issuers as $issuer): ?>
+                <li class="flex mb-4">
+                    <div class="flex-none w-8">
+                        <input wire:model="selectedIssuer" type="radio" value="<?= $issuer['id'] ?>" id="<?= $issuer['uniqueId'] ?>" name="<?= $issuer['radioName'] ?>">
+                    </div>
+                    <label for="<?= $issuer['uniqueId'] ?>" class="flex space-x-4">
+                        <?php if ($issuer['showLogo']): ?>
+                        <div class="-mt-1">
+                            <img width="35px" class="payment-option-icon" src="<?= $issuer['logo'] ?>" alt="<?= $issuer['name'] ?>"/>
+                        </div>
+                        <?php endif; ?>
+                        <span><?= $issuer['visibleName'] ?></span>
+                    </label>
+                </li>
+            <?php endforeach;?>
+        </ul>
+    </div>
+    <?php endif; ?>
+</div>
