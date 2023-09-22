@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * ${NAME}
+ *
+ * @copyright Copyright © 2023 Bold Commerce BV. All rights reserved.
+ * @author    sidney@boldcommerce.nl
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Hyva\Checkout\Model\Magewire\Payment\PlaceOrderServiceProvider">
+        <plugin name="set-default-paynl-service-provider"
+                type="Paynl\HyvaCheckout\Plugin\SetDefaultPaynlServiceProvider"/>
+    </type>
+    <type name="Hyva\Checkout\ViewModel\Checkout\Payment\MethodList">
+        <plugin name="set-default-paynl-payment-method-block"
+                type="Paynl\HyvaCheckout\Plugin\SetDefaultPaymentMethodBlock"/>
+        <plugin name="paynl-hyvacheckout-method-filter"
+                type="Paynl\HyvaCheckout\Plugin\PaymentMethodFilter"/>
+    </type>
+</config>

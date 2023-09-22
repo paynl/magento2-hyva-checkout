@@ -1,0 +1,16 @@
+<script>
+    function configureApplePay() {
+        if (!window.ApplePaySession) {
+            const element = document.getElementById('payment-method-option-paynl_payment_applepay');
+            if (element) {
+                element.remove();
+            }
+        }
+    }
+
+    configureApplePay();
+
+    window.addEventListener('magewire:update', () => {
+        configureApplePay();
+    });
+</script>

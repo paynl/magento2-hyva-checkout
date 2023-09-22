@@ -1,0 +1,628 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * ${NAME}
+ *
+ * @copyright Copyright © 2023 Bold Commerce BV. All rights reserved.
+ * @author    sidney@boldcommerce.nl
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.payment.methods">
+            <block name="checkout.payment.method.paynl_payment_default"
+                   as="paynl_payment_default"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_ideal"
+                   as="paynl_payment_ideal"
+                   template="Paynl_HyvaCheckout::component/payment/method/ideal.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\Ideal
+                    </argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_instore"
+                   as="paynl_payment_instore"
+                   template="Paynl_HyvaCheckout::component/payment/method/ideal.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\Pin
+                    </argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_afterpay" as="paynl_payment_afterpay"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_afterpay</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_afterpay_international"
+                   as="paynl_payment_afterpay_international"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_afterpay_international</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_alipay" as="paynl_payment_alipay"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_alipay</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_amazonpay" as="paynl_payment_amazonpay"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_amazonpay</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_amex" as="paynl_payment_amex"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_amex</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_applepay" as="paynl_payment_applepay"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_applepay</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_bataviacadeaukaart" as="paynl_payment_bataviacadeaukaart"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_bataviacadeaukaart</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_biercheque" as="paynl_payment_biercheque"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_biercheque</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_biller" as="paynl_payment_biller"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_biller</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_billink" as="paynl_payment_billink"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_billink</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_bioscoopbon" as="paynl_payment_bioscoopbon"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_bioscoopbon</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_blik" as="paynl_payment_blik"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_blik</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_bloemencadeaukaart" as="paynl_payment_bloemencadeaukaart"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_bloemencadeaukaart</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_boekenbon" as="paynl_payment_boekenbon"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_boekenbon</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_capayable_gespreid" as="paynl_payment_capayable_gespreid"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_capayable_gespreid</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_cartebleue" as="paynl_payment_cartebleue"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_cartebleue</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_cashly" as="paynl_payment_cashly"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_cashly</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_creditclick" as="paynl_payment_creditclick"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_creditclick</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_dankort" as="paynl_payment_dankort"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_dankort</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_decadeaukaart" as="paynl_payment_decadeaukaart"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_decadeaukaart</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_dinerbon" as="paynl_payment_dinerbon"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_dinerbon</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_eps" as="paynl_payment_eps"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_eps</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_fashioncheque" as="paynl_payment_fashioncheque"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_fashioncheque</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_fashiongiftcard" as="paynl_payment_fashiongiftcard"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_fashiongiftcard</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_festivalcadeaukaart"
+                   as="paynl_payment_festivalcadeaukaart"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_festivalcadeaukaart</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_gezondheidsbon" as="paynl_payment_gezondheidsbon"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_gezondheidsbon</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_giropay" as="paynl_payment_giropay"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_giropay</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_givacard" as="paynl_payment_givacard"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_givacard</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_good4fun" as="paynl_payment_good4fun"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_good4fun</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_googlepay" as="paynl_payment_googlepay"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_googlepay</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_huisentuincadeau" as="paynl_payment_huisentuincadeau"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_huisentuincadeau</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_klarna" as="paynl_payment_klarna"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_klarna</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_klarnakp" as="paynl_payment_klarnakp"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_klarnakp</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_maestro" as="paynl_payment_maestro"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_maestro</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_mistercash" as="paynl_payment_mistercash"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_mistercash</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_monizze" as="paynl_payment_monizze"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_monizze</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_multibanco" as="paynl_payment_multibanco"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_multibanco</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_nexi" as="paynl_payment_nexi"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_nexi</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_overboeking" as="paynl_payment_overboeking"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_overboeking</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_onlinebankbetaling" as="paynl_payment_onlinebankbetaling"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_onlinebankbetaling</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_parfumcadeaukaart" as="paynl_payment_parfumcadeaukaart"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_parfumcadeaukaart</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_payconiq" as="paynl_payment_payconiq"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_payconiq</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_paypal" as="paynl_payment_paypal"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_paypal</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_paysafecard" as="paynl_payment_paysafecard"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_paysafecard</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_podiumcadeaukaart" as="paynl_payment_podiumcadeaukaart"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_podiumcadeaukaart</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_postepay" as="paynl_payment_postepay"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_postepay</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_przelewy24" as="paynl_payment_przelewy24"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_przelewy24</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_prontowonen" as="paynl_payment_prontowonen"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_prontowonen</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_shoesandsneakers" as="paynl_payment_shoesandsneakers"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_shoesandsneakers</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_sodexo" as="paynl_payment_sodexo"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_sodexo</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_sofortbanking" as="paynl_payment_sofortbanking"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_sofortbanking</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_sofortbanking_hr" as="paynl_payment_sofortbanking_hr"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_sofortbanking_hr</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_sofortbanking_ds" as="paynl_payment_sofortbanking_ds"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_sofortbanking_ds</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_spraypay" as="paynl_payment_spraypay"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_spraypay</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_telefonischbetalen" as="paynl_payment_telefonischbetalen"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_telefonischbetalen</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_trustly" as="paynl_payment_trustly"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_trustly</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_visamastercard" as="paynl_payment_visamastercard"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_visamastercard</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_vvvgiftcard" as="paynl_payment_vvvgiftcard"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_vvvgiftcard</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_webshopgiftcard" as="paynl_payment_webshopgiftcard"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_webshopgiftcard</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_wechatpay" as="paynl_payment_wechatpay"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_wechatpay</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_wijncadeau" as="paynl_payment_wijncadeau"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_wijncadeau</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_winkelcheque" as="paynl_payment_winkelcheque"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_winkelcheque</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_yourgift" as="paynl_payment_yourgift"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_yourgift</argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_yourgreengift" as="paynl_payment_yourgreengift"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_yourgreengift</argument>
+                </arguments>
+            </block>
+
+        </referenceBlock>
+
+        <referenceContainer name="checkout.payment.methods.after">
+            <block name="checkout.payment.methods.after.paynl_payment_configuration"
+                   as="paynl_payment_configuration"
+                   template="Paynl_HyvaCheckout::component/payment/method/configuration.phtml"/>
+        </referenceContainer>
+    </body>
+</page>
