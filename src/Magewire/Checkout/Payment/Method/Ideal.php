@@ -19,6 +19,7 @@ use Rakit\Validation\Validator;
 class Ideal extends Form implements EvaluationInterface
 {
     public const METHOD_CODE = 'paynl_payment_ideal';
+    public const DISPLAY_MODE_NONE = 0;
     public const DISPLAY_MODE_DROPDOWN = 1;
     public const DISPLAY_MODE_LIST = 2;
 
@@ -137,7 +138,7 @@ class Ideal extends Form implements EvaluationInterface
      */
     public function evaluateCompletion(EvaluationResultFactory $resultFactory): EvaluationResultInterface
     {
-        if (!$this->selectedIssuer) {
+        if (!$this->selectedIssuer && $this->displayMode !== static::DISPLAY_MODE_NONE) {
             return $resultFactory->createErrorMessageEvent()
                 ->withCustomEvent('payment:method:error')
                 ->withMessage((string) __(static::ERROR_MESSAGE));
