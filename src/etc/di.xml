@@ -14,8 +14,6 @@
                 type="Paynl\HyvaCheckout\Plugin\SetDefaultPaynlServiceProvider"/>
     </type>
     <type name="Hyva\Checkout\ViewModel\Checkout\Payment\MethodList">
-        <plugin name="set-default-paynl-payment-method-block"
-                type="Paynl\HyvaCheckout\Plugin\SetDefaultPaymentMethodBlock"/>
         <plugin name="paynl-hyvacheckout-method-filter"
                 type="Paynl\HyvaCheckout\Plugin\PaymentMethodFilter"/>
     </type>
