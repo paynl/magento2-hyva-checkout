@@ -37,7 +37,7 @@ class SetDefaultPaymentMethod
      * @param MethodList $subject
      * @return void
      */
-    public function afterMount(MethodList $subject): void
+    public function afterBoot(MethodList $subject): void
     {
         if (!$subject->method && ($defaultOption = $this->config->getDefaultPaymentOption())) {
             try {
