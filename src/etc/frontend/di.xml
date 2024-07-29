@@ -12,4 +12,7 @@
     <type name="Hyva\Checkout\Model\MethodMetaDataInterface">
         <plugin name="paynl_hyva_checkout_handle_payment_method_icons" type="Paynl\HyvaCheckout\Plugin\HandlePaymentMethodIcons"/>
     </type>
+    <type name="Hyva\Checkout\Magewire\Checkout\Payment\MethodList">
+        <plugin name="paynl_hyva_checkout_set_default_method" type="Paynl\HyvaCheckout\Plugin\SetDefaultPaymentMethod" />
+    </type>
 </config>
