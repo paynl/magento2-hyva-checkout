@@ -14,7 +14,7 @@ use Paynl\Payment\Model\Config;
 class SetDefaultPaymentMethod
 {
     private Config $config;
-    private SessionCheckout $sesionCheckout;
+    private SessionCheckout $sessionCheckout;
     private CartRepositoryInterface $cartRepository;
     private PayHelper $payHelper;
 
