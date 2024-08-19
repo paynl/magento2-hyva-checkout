@@ -5,7 +5,7 @@
   "type": "magento2-module",
   "require": {
     "paynl/magento2-plugin": "^3.5",
-    "hyva-themes/magento2-hyva-checkout": "^1.1.6"
+    "hyva-themes/magento2-hyva-checkout": "^1.1.22"
   },
   "support": {
     "email": "support@pay.nl",
