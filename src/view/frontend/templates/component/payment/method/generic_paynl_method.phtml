@@ -26,15 +26,15 @@ $magewire->registerMethodCode($block->getData('method_code'));
 
     <?php if ($magewire->showKVK()): ?>
         <div class="relative text-sm mb-4">
-            <label class="-top-[10px] left-[10px] absolute bg-[#fafafa] px-1" for="kvknummer"><?= $escaper->escapeHtml(__('COC number')) ?></label>
-            <input wire:model.delay.750ms="kvknummer" class="border border-[#c2c2c2] px-3 py-4 rounded-md bg-transparent text-sm w-full" type="text" id="kvknummer" name="kvknummer" placeholder="xxxxxxxx"/>
+            <label class="-top-[10px] left-[10px] absolute bg-[#fafafa] px-1" for="cocnumber"><?= $escaper->escapeHtml(__('COC number')) ?></label>
+            <input wire:model.delay.750ms="cocnumber" class="border border-[#c2c2c2] px-3 py-4 rounded-md bg-transparent text-sm w-full" type="text" id="cocnumber" name="cocnumber" placeholder="xxxxxxxx"/>
         </div>
     <?php endif; ?>
 
     <?php if ($magewire->showVAT()): ?>
         <div class="relative text-sm mb-4">
             <label class="-top-[10px] left-[10px] absolute bg-[#fafafa] px-1" for="vatnumber"><?= $escaper->escapeHtml(__('VAT-id')) ?></label>
-            <input wire:model.delay.750ms="vatnummer" class="border border-[#c2c2c2] px-3 py-4 rounded-md bg-transparent text-sm w-full" type="text" id="vatnumber" name="vatnumber" placeholder="xxxxxxxxxxxxxx"/>
+            <input wire:model.delay.750ms="vatnumber" class="border border-[#c2c2c2] px-3 py-4 rounded-md bg-transparent text-sm w-full" type="text" id="vatnumber" name="vatnumber" placeholder="xxxxxxxxxxxxxx"/>
         </div>
     <?php endif; ?>
 
