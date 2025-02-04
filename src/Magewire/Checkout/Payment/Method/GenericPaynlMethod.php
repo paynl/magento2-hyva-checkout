@@ -21,8 +21,8 @@ use Rakit\Validation\Validator;
 class GenericPaynlMethod extends Form implements EvaluationInterface
 {
     public ?string $instructions = null;
-    public ?string $kvknummer = null;
-    public ?string $vatnummer = null;
+    public ?string $cocnumber = null;
+    public ?string $vatnumber = null;
     public ?string $dateofbirth = null;
     public ?bool $billinkAgree = null;
 
@@ -69,12 +69,12 @@ class GenericPaynlMethod extends Form implements EvaluationInterface
             $this->dateofbirth = $dob;
         }
 
-        if ($kvk = $quote->getPayment()->getAdditionalInformation('kvknummer')) {
-            $this->kvknummer = $kvk;
+        if ($coc = $quote->getPayment()->getAdditionalInformation('cocnumber')) {
+            $this->cocnumber = $coc;
         }
 
-        if ($vat = $quote->getPayment()->getAdditionalInformation('vatnummer')) {
-            $this->vatnummer = $vat;
+        if ($vat = $quote->getPayment()->getAdditionalInformation('vatnumber')) {
+            $this->vatnumber = $vat;
         }
 
         if ($billink = $quote->getPayment()->getAdditionalInformation('billink_agree')) {
@@ -116,12 +116,12 @@ class GenericPaynlMethod extends Form implements EvaluationInterface
      * @throws LocalizedException
      * @throws NoSuchEntityException
      */
-    public function updatedKvknummer(?string $value): ?string
+    public function updatedCocnumber(?string $value): ?string
     {
         $value = empty($value) ? null : $value;
 
         $quote = $this->getQuote();
-        $quote->getPayment()->setAdditionalInformation('kvknummer', $value);
+        $quote->getPayment()->setAdditionalInformation('cocnumber', $value);
         $this->quoteRepository->save($quote);
 
         return $value;
@@ -133,12 +133,12 @@ class GenericPaynlMethod extends Form implements EvaluationInterface
      * @throws LocalizedException
      * @throws NoSuchEntityException
      */
-    public function updatedVatnummer(?string $value): ?string
+    public function updatedVatnumber(?string $value): ?string
     {
         $value = empty($value) ? null : $value;
 
         $quote = $this->getQuote();
-        $quote->getPayment()->setAdditionalInformation('vatnummer', $value);
+        $quote->getPayment()->setAdditionalInformation('vatnumber', $value);
         $this->quoteRepository->save($quote);
 
         return $value;
@@ -183,14 +183,14 @@ class GenericPaynlMethod extends Form implements EvaluationInterface
                     ->withMessage((string) __('You must first agree to the payment terms.'));
             }
 
-            if (strlen((string) $this->kvknummer) < 8) {
+            if (strlen((string) $this->cocnumber) < 8) {
                 return $resultFactory->createErrorMessageEvent()
                     ->withCustomEvent('payment:method:error')
                     ->withMessage((string) __('Enter a valid COC number'));
             }
         }
 
-        if ($vatRequired && strlen((string) $this->vatnummer) < 8) {
+        if ($vatRequired && strlen((string) $this->vatnumber) < 8) {
             return $resultFactory->createErrorMessageEvent()
                 ->withCustomEvent('payment:method:error')
                 ->withMessage((string) __('Enter a valid VAT-id'));
