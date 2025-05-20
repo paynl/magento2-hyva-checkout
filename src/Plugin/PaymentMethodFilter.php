@@ -79,6 +79,11 @@ class PaymentMethodFilter
             return false;
         }
 
+        // as of v3.16.0 of main pay extension, checkoutActive is only implemented for paylink
+        if (!$method->getCheckoutActive() && $method->getCode() === 'paynl_payment_paylink') {
+            return false;
+        }
+
         return true;
     }
 }

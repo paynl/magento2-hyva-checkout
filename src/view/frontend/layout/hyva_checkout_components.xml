@@ -704,6 +704,29 @@
                     </argument>
                 </arguments>
             </block>
+            <block name="checkout.payment.method.paynl_payment_huisdierencadeaukaart" as="paynl_payment_huisdierencadeaukaart"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_huisdierencadeaukaart</argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="src" xsi:type="helper" helper="Paynl\HyvaCheckout\Helper\PaymentIcon::getIconUrl">
+                                <param name="methodCode">paynl_payment_huisdierencadeaukaart</param>
+                            </item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="width" xsi:type="string">35px</item>
+                                <item name="loading" xsi:type="string">lazy</item>
+                                <item name="alt" xsi:type="helper" helper="Paynl\HyvaCheckout\Helper\PaymentIcon::getIconAltText">
+                                    <param name="methodCode">paynl_payment_huisdierencadeaukaart</param>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
             <block name="checkout.payment.method.paynl_payment_huisentuincadeau" as="paynl_payment_huisentuincadeau"
                    template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
                 <arguments>
@@ -957,6 +980,29 @@
                     </argument>
                 </arguments>
             </block>
+            <block name="checkout.payment.method.paynl_payment_nationaletuinbon" as="paynl_payment_nationaletuinbon"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_nationaletuinbon</argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="src" xsi:type="helper" helper="Paynl\HyvaCheckout\Helper\PaymentIcon::getIconUrl">
+                                <param name="methodCode">paynl_payment_nationaletuinbon</param>
+                            </item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="width" xsi:type="string">35px</item>
+                                <item name="loading" xsi:type="string">lazy</item>
+                                <item name="alt" xsi:type="helper" helper="Paynl\HyvaCheckout\Helper\PaymentIcon::getIconAltText">
+                                    <param name="methodCode">paynl_payment_nationaletuinbon</param>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
             <block name="checkout.payment.method.paynl_payment_nexi" as="paynl_payment_nexi"
                    template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
                 <arguments>
@@ -1066,6 +1112,29 @@
                                 <item name="loading" xsi:type="string">lazy</item>
                                 <item name="alt" xsi:type="helper" helper="Paynl\HyvaCheckout\Helper\PaymentIcon::getIconAltText">
                                     <param name="methodCode">paynl_payment_payconiq</param>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+            <block name="checkout.payment.method.paynl_payment_paylink" as="paynl_payment_paylink"
+                   template="Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethod
+                    </argument>
+                    <argument name="method_code" xsi:type="string">paynl_payment_paylink</argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="src" xsi:type="helper" helper="Paynl\HyvaCheckout\Helper\PaymentIcon::getIconUrl">
+                                <param name="methodCode">paynl_payment_paylink</param>
+                            </item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="width" xsi:type="string">35px</item>
+                                <item name="loading" xsi:type="string">lazy</item>
+                                <item name="alt" xsi:type="helper" helper="Paynl\HyvaCheckout\Helper\PaymentIcon::getIconAltText">
+                                    <param name="methodCode">paynl_payment_paylink</param>
                                 </item>
                             </item>
                         </item>
