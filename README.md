@@ -18,10 +18,13 @@ For details on the base functionality of PAY. refer to https://github.com/paynl/
 The extension has been tested on a Magento environment with
 
 - PHP 8.1
-- Magento 2.4.6
-- PAY. 3.5.2
-- Hyvä Themes 1.2.3
-- Hyvä Checkout 1.1.0
+- Magento 2.4.6-p7
+- PAY. 4.0.0
+- Hyvä Themes 1.3.11
+- Hyvä Checkout 1.3.0
+
+Magento version 2.4.4-p9, 2.4.5-p8, 2.4.6-p7, 2.4.7-p1, or higher is required due to
+the CSP changes introduced in hyva checkout 1.3.0
 
 # Installation
 In command line, navigate to the installation directory of Magento2
