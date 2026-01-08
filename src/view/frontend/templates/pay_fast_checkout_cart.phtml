@@ -1,0 +1,117 @@
+
+<?php
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\Theme\ViewModel\HyvaCsp;
+use Hyva\Theme\ViewModel\Modal;
+use Magento\Framework\Escaper;
+
+/** @var \Paynl\Payment\Block\Checkout\FastCheckout $block */
+/** @var ViewModelRegistry $viewModels */
+/** @var HyvaCsp $hyvaCsp */
+/** @var Escaper $escaper */
+
+$viewModel = $block->getViewModel();
+$modalViewModel = $viewModels->require(Modal::class);
+
+if (!$viewModel->getVisibility()) {
+    return;
+}
+
+$modalEnabled = $viewModel->modalEnabled();
+$modalContent = null;
+if ($modalEnabled) {
+    $modalContent = $modalViewModel->createModal()->withContent(<<<END_OF_CONTENT
+<div class="fc-modal" id="fc-modal" :class="isVisibleClass">
+    <div class="modal-body-wrapper">
+        <div class="eye-catcher"></div>
+        <div class="modal-content">
+            <div class="modal-header roboto-slab">
+                <span>{$escaper->escapeHtml(__('Order faster'))}</span>{$escaper->escapeHtml(__('with iDEAL fast checkout'))}
+            </div>
+            <div class="modal-text">
+                <p class="modal-description">{$escaper->escapeHtml(__('Create an iDEAL profile and save your address for your next order'))}</p>
+            </div>
+            <div class="modal-actions">
+                <button class="button button-primary" type="submit" title="Fast Checkout" @click="initFastCheckout">
+                    <span class="fastcheckout-button-modal">{$escaper->escapeHtml(__('Fast Checkout'))}</span>
+                </button>
+                <button class="button button-secondary roboto-medium" @click="goToCheckout">{$escaper->escapeHtml(__('Enter my own address and pay'))}</button>
+            </div>
+        </div>
+    </div>
+</div>
+END_OF_CONTENT
+)->addDialogClass('m-4');
+}
+?>
+<div class="paynl-fast_checkout">
+    <form
+        action="<?= $escaper->escapeUrl($block->getBaseUrl()) ?>paynl/checkout/fastcheckoutstart"
+        id="paynl_fast_checkout_cart"
+        method="post"
+        x-data="initCartPageFastCheckout"
+        x-ref="fcForm"
+        @submit.prevent
+    >
+        <input type="hidden" value="" name="selected_estimate_shipping" x-ref="shipping"/>
+        <input type="hidden" value="" name="selected_estimate_country" x-ref="country"/>
+        <input type="hidden" value="" name="selected_estimate_zip" x-ref="zip" />
+        <?= $block->getBlockHtml('formkey') ?>
+
+        <?php if ($modalEnabled) : ?>
+
+            <button type="submit"
+                    title="Fast Checkout"
+                    class="btn paynl-fast_checkout-btn"
+                    @click="openModal">
+                <span><?= $escaper->escapeHtml(__('Fast Checkout')) ?></span>
+            </button>
+
+            <template x-teleport="body">
+            <?= /** @noEscape */ $modalContent ?>
+            </template>
+
+        <?php else: ?>
+
+            <button type="submit"
+                    title="Fast Checkout"
+                    class="btn paynl-fast_checkout-btn"
+                    @click="initFastCheckout">
+                <span><?= $escaper->escapeHtml(__('Fast Checkout')) ?></span>
+            </button>
+
+        <?php endif; ?>
+    </form>
+</div>
+<script>
+    function initCartPageFastCheckout() {
+        return Object.assign(
+            hyva.modal.apply(this),
+            {
+                isModalVisible: false,
+                isVisibleClass() {
+                    return {'visible': this.isModalVisible};
+                },
+                <?php if ($modalEnabled) : ?>
+                openModal() {
+                    this.<?= /** @noEscape  */ $modalContent->getShowJs() ?>;
+                    this.isModalVisible = true;
+                },
+                <?php endif; ?>
+                goToCheckout() {
+                    window.location.href = '<?= $escaper->escapeUrl($block->getBaseUrl()) ?>checkout';
+                },
+                initFastCheckout() {
+                    this.$refs.shipping.value = document.querySelector('#block-shipping input[name="shippingEstimationSelection"]:checked')?.value;
+                    this.$refs.country.value = document.querySelector('#block-shipping select[name="country_id"]')?.value;
+                    this.$refs.zip.value = document.querySelector('#block-shipping input[name="postcode"]')?.value;
+
+                    this.$refs.fcForm.submit();
+                },
+            }
+        )
+    }
+
+    window.addEventListener('alpine:init', () => Alpine.data('initCartPageFastCheckout', initCartPageFastCheckout), {once: true})
+</script>
+<?php $hyvaCsp->registerInlineScript() ?>

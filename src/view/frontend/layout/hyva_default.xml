@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd"
+>
+    <update handle="hyva_modal" />
+    <body>
+        <referenceContainer name="extra_actions">
+            <block class="Paynl\Payment\Block\Checkout\FastCheckout"
+                   name="paynl.fastcheckout.minicart"
+                   template="Paynl_Payment::pay_fast_checkout_minicart_button.phtml"
+                   ifconfig="payment/paynl_payment_ideal/fast_checkout_minicart_enabled"
+            />
+        </referenceContainer>
+    </body>
+</page>

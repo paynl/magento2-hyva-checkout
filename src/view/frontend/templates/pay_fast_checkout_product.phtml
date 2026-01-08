@@ -1,0 +1,109 @@
+<?php
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\Theme\ViewModel\HyvaCsp;
+use Hyva\Theme\ViewModel\Modal;
+use Magento\Framework\Escaper;
+
+/** @var \Paynl\Payment\Block\Checkout\FastCheckout $block */
+/** @var ViewModelRegistry $viewModels */
+/** @var HyvaCsp $hyvaCsp */
+/** @var Escaper $escaper */
+
+$viewModel = $block->getViewModel();
+$modalEnabled = $viewModel->modalEnabled();
+$triggerAction = $modalEnabled ? 'openModal' : 'initFastCheckout';
+$modalContent = null;
+if ($modalEnabled) {
+    $modalViewModel = $viewModels->require(Modal::class);
+    $modalContent = $modalViewModel->createModal()->withContent(<<<END_OF_CONTENT
+<div class="fc-modal" id="fc-modal" :class="isVisibleClass">
+    <div class="modal-body-wrapper">
+        <div class="eye-catcher"></div>
+        <div class="modal-content">
+            <div class="modal-header roboto-slab">
+                <span>{$escaper->escapeHtml(__('Order faster'))}</span>{$escaper->escapeHtml(__('with iDEAL fast checkout'))}
+            </div>
+            <div class="modal-text">
+                <p class="modal-description">{$escaper->escapeHtml(__('Create an iDEAL profile and save your address for your next order'))}</p>
+            </div>
+            <div class="modal-actions">
+                <button class="button button-primary" type="submit" title="Fast Checkout" @click="initFastCheckout">
+                    <span class="fastcheckout-button-modal">{$escaper->escapeHtml(__('Fast Checkout'))}</span>
+                </button>
+                <button class="button button-secondary roboto-medium" @click="goToCheckout">{$escaper->escapeHtml(__('Enter my own address and pay'))}</button>
+            </div>
+        </div>
+    </div>
+</div>
+END_OF_CONTENT
+    )->addDialogClass('m-4');
+}
+?>
+<div x-data="initProductPageFastCheckout">
+    <div id="paynl_fast_checkout_product" class="!w-56">
+        <button type="submit"
+                title="Fast Checkout"
+                class="btn paynl-fast-checkout-btn"
+                @click="<?= $triggerAction?>">
+            <span><?= $escaper->escapeHtml(__('Fast Checkout')) ?></span>
+        </button>
+    </div>
+    <?php if ($modalEnabled) : ?>
+        <?= /** @noEscape */ $modalContent ?>
+    <?php endif; ?>
+</div>
+<script>
+    function initProductPageFastCheckout() {
+        return Object.assign(
+            hyva.modal.apply(this),
+            {
+                isModalVisible: false,
+                isVisibleClass() {
+                    return {'visible': this.isModalVisible};
+                },
+                init() {
+                    const fastCheckoutElement = this.$el;
+                    const addToCartButtonElement = document.getElementById('product-addtocart-button');
+
+                    //fix alignment of elements
+                    if (addToCartButtonElement) {
+                        const wrapper = document.createElement('div');
+                        wrapper.className = 'flex flex-col gap-4 w-full';
+
+                        addToCartButtonElement.parentNode.insertBefore(wrapper, addToCartButtonElement);
+                        wrapper.appendChild(addToCartButtonElement);
+                        wrapper.appendChild(fastCheckoutElement);
+
+                        const rootContainer = fastCheckoutElement.parentElement.parentElement.parentElement;
+                        if (rootContainer && rootContainer.classList.contains('items-end')) {
+                            rootContainer.classList.add('sm:items-start');
+                            fastCheckoutElement.parentElement.parentElement.classList.remove('sm:mt-0');
+                        }
+                    }
+                },
+                <?php if ($modalEnabled) : ?>
+                openModal() {
+                    this.<?= /** @noEscape  */ $modalContent->getShowJs() ?>;
+                    this.isModalVisible = true;
+                },
+                <?php endif; ?>
+                goToCheckout() {
+                    window.location.href = '<?= $escaper->escapeUrl($block->getBaseUrl()) ?>checkout';
+                },
+                initFastCheckout() {
+                    const form = document.getElementById('product_addtocart_form'),
+                        submitButton = document.getElementById('product-addtocart-button')
+                        baseUrl = form.getAttribute('action'),
+                        fastCheckoutUrl = baseUrl.replace('checkout/cart/add', 'paynl/checkout/fastcheckoutproduct');
+
+                    form.setAttribute('action', fastCheckoutUrl);
+                    submitButton.click();
+                    form.setAttribute('action', baseUrl);
+                },
+            }
+        )
+    }
+
+    window.addEventListener('alpine:init', () => Alpine.data('initProductPageFastCheckout', initProductPageFastCheckout), {once: true})
+</script>
+<?php $hyvaCsp->registerInlineScript() ?>

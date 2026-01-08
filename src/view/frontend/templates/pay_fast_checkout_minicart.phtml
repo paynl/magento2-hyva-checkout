@@ -1,0 +1,15 @@
+<?php
+use Hyva\Theme\ViewModel\HyvaCsp;
+use Paynl\Payment\Block\Checkout\FastCheckout;
+
+/** @var FastCheckout $block */
+/** @var HyvaCsp $hyvaCsp */
+
+$viewModel = $block->getViewModel();
+?>
+
+<script>
+    window.fastCheckoutMinicart = <?= $viewModel->minicartEnabled() ? 'true' : 'false' ?>;
+    window.fastCheckoutModalEnabled = <?= $viewModel->modalEnabled() ? 'true' : 'false' ?>;
+</script>
+<?php $hyvaCsp->registerInlineScript() ?>

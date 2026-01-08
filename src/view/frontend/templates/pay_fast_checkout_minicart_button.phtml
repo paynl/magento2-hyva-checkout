@@ -1,0 +1,95 @@
+<?php
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\Theme\ViewModel\HyvaCsp;
+use Hyva\Theme\ViewModel\Modal;
+use Magento\Framework\Escaper;
+use Paynl\Payment\ViewModel\FastCheckout;
+
+/** @var \Paynl\Payment\Block\Checkout\FastCheckout $block */
+/** @var ViewModelRegistry $viewModels */
+/** @var HyvaCsp $hyvaCsp */
+/** @var Escaper $escaper */
+
+$fastCheckoutViewModel = $viewModels->require(FastCheckout::class);
+$modalViewModel = $viewModels->require(Modal::class);
+
+if (!$fastCheckoutViewModel->getVisibility() || !$fastCheckoutViewModel->minicartEnabled()) {
+    return;
+}
+
+$modalEnabled = $fastCheckoutViewModel->modalEnabled();
+$modalContent = null;
+if ($modalEnabled) {
+    $modalContent = $modalViewModel->createModal()->withContent(<<<END_OF_CONTENT
+    <div class="fc-modal" id="fc-modal-minicart" :class="isVisibleClass">
+        <div class="modal-body-wrapper">
+            <div class="eye-catcher"></div>
+            <div class="modal-content">
+                <div class="modal-header roboto-slab">
+                    <span>{$escaper->escapeHtml(__('Order faster'))}</span> <span class="nostyle">{$escaper->escapeHtml(__('with iDEAL fast checkout'))}</span>
+                </div>
+                <div class="modal-text">
+                    <p class="modal-description">{$escaper->escapeHtml(__('Create an iDEAL profile and save your address for your next order'))}</p>
+                </div>
+                <div class="modal-actions">
+                    <button class="button button-primary" type="submit" title="Fast Checkout" @click="doFastCheckout">
+                        <span class="fastcheckout-button-modal">{$escaper->escapeHtml(__('Fast Checkout'))}</span>
+                    </button>
+                    <button class="button button-secondary roboto-medium" @click="gotoCheckout">{$escaper->escapeHtml(__('Enter my own address and pay'))}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+END_OF_CONTENT
+    )->addDialogClass('m-4');
+}
+?>
+<template x-if="itemsCount">
+    <div x-data="initMiniCartFastCheckout" class="w-full px-3 space-x-4 rounded-lg">
+        <button
+            id="top-cart-btn-fastcheckout"
+            type="button"
+            class="btn fastcheckout"
+            data-action="fastcheckout"
+            title="<?= $escaper->escapeHtmlAttr(__('Fast Checkout')) ?>"
+            @click="openFastCheckout">
+            <span><?= $escaper->escapeHtml(__('Fast Checkout')) ?></span>
+        </button>
+        <?= $modalContent ?>
+    </div>
+</template>
+<script>
+    function initMiniCartFastCheckout() {
+        return Object.assign(
+            hyva.modal.apply(this),
+            {
+                isModalVisible: false,
+                isVisibleClass() {
+                    return {'visible': this.isModalVisible};
+                },
+                openFastCheckout: function () {
+                    <?php if ($modalEnabled) : ?>
+                        this.<?= /** @noEscape  */ $modalContent->getShowJs() ?>;
+                        this.isModalVisible = true;
+                    <?php else : ?>
+                        this.doFastCheckout();
+                    <?php endif; ?>
+                },
+                doFastCheckout: function () {
+                    window.location.href = '<?= $escaper->escapeUrl($block->getBaseUrl()) ?>paynl/checkout/fastcheckoutstart';
+                },
+                gotoCheckout: function () {
+                    window.location.href = '<?= $escaper->escapeUrl($block->getBaseUrl()) ?>checkout';
+                }
+            }
+        );
+    }
+
+    //this component had trouble loading when only using hte eventListener method
+    if (window.Alpine) {
+        Alpine.data('initMiniCartFastCheckout', initMiniCartFastCheckout);
+    } else {
+        window.addEventListener('alpine:init', () => Alpine.data('initMiniCartFastCheckout', initMiniCartFastCheckout), {once: true})
+    }
+</script>
+<?php $hyvaCsp->registerInlineScript() ?>
