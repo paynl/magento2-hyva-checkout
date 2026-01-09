@@ -1687,7 +1687,7 @@
             </block>
         </referenceBlock>
 
-        <referenceContainer name="checkout.payment.methods.after">
+        <referenceContainer name="magewire.plugin.scripts">
             <block name="checkout.payment.methods.after.paynl_payment_configuration"
                    as="paynl_payment_configuration"
                    template="Paynl_HyvaCheckout::component/payment/method/configuration.phtml"/>
