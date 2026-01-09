@@ -1,7 +1,0 @@
-#cart-drawer div[x-html="getSectionDataExtraActions"]:empty {
-    display: none;
-}
-
-.fc-modal .fastcheckout-button-modal {
-    @apply text-xl;
-}
