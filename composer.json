@@ -1,7 +1,7 @@
 {
   "name": "paynl/magento2-hyva-checkout",
-  "version": "1.2.2",
-  "description": "PAY. Payment methods for Magento 2 with Hyva Checkout Compatability",
+  "version": "1.3.0",
+  "description": "Pay. Payment methods for Magento 2 with Hyva Checkout Compatability",
   "type": "magento2-module",
   "require": {
     "paynl/magento2-plugin": "^3.16.1 || ^4.0.0",
