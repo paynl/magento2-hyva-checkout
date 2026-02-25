@@ -1,11 +1,1 @@
-#cart-drawer div[x-html="getSectionDataExtraActions"]:empty {
-    display: none;
-}
-
-.fc-modal .fastcheckout-button-modal {
-    @apply text-xl;
-}
-
-#paynl_fast_checkout_cart>button.paynl-fast_checkout-btn {
-    margin-top: 0;
-}
+@import "./paynl.css";
