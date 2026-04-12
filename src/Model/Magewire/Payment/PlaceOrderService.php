@@ -27,7 +27,7 @@ class PlaceOrderService extends AbstractPlaceOrderService
         CartManagementInterface $cartManagement,
         QuoteIdToMaskedQuoteIdInterface $quoteIdToMaskedQuoteId,
         PayHelper $payHelper,
-        AbstractOrderData $orderData = null
+        ?AbstractOrderData $orderData = null
     ) {
         $this->quoteIdToMaskedQuoteId = $quoteIdToMaskedQuoteId;
         $this->payHelper = $payHelper;
