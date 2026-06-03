@@ -60,7 +60,7 @@ class RegisterPaynlPaymentMethods implements ObserverInterface
 
         $existingChildren = array_flip($parent->getChildNames());
 
-        foreach (array_keys($this->paymentConfig->getMethodsInfo()) as $code) {
+        foreach (array_keys($this->paymentConfig->getActiveMethods()) as $code) {
             if (!is_string($code) || strpos($code, self::METHOD_PREFIX) !== 0) {
                 continue;
             }
