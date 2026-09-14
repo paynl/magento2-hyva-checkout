@@ -5,7 +5,7 @@
         <referenceBlock name="checkout.payment.methods">
             <block name="checkout.payment.method.paynl_payment_instore"
                    as="paynl_payment_instore"
-                   template="Paynl_HyvaCheckout::component/payment/method/ideal.phtml">
+                   template="Paynl_HyvaCheckout::component/payment/method/pin.phtml">
                 <arguments>
                     <argument name="magewire" xsi:type="object">
                         Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\Pin
