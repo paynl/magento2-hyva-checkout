@@ -20,7 +20,7 @@ use Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\Pin;
     </div>
     <?php elseif ($magewire->displayMode === Pin::DISPLAY_MODE_LIST) :?>
     <div class="field-select-billing">
-        <span><?= $escaper->escapeHtml(__('Choose your bank')) ?></span>
+        <span><?= $escaper->escapeHtml(__('Choose the pin terminal')) ?></span>
         <ul class="mt-4">
             <?php foreach ($magewire->issuers as $issuer): ?>
                 <li class="flex mb-4">

@@ -18,7 +18,7 @@ use Rakit\Validation\Validator;
 
 class Pin extends Form implements EvaluationInterface
 {
-    public const METHOD_CODE = 'paynl_payment_instore';      
+    public const METHOD_CODE = 'paynl_payment_instore';
     public const DISPLAY_MODE_NONE = 0;
     public const DISPLAY_MODE_DROPDOWN = 1;
     public const DISPLAY_MODE_LIST = 2;
