@@ -1,16 +1,16 @@
 <?php
 /**
  * @var Escaper $escaper
- * @var Ideal $magewire
+ * @var Pin $magewire
  */
 
 use Magento\Framework\Escaper;
-use Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\Ideal;
+use Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\Pin;
 
 ?>
 <div>
     <p class="mb-4"><?= $magewire->instructions ?></p>
-    <?php if ($magewire->displayMode === Ideal::DISPLAY_MODE_DROPDOWN) :?>
+    <?php if ($magewire->displayMode === Pin::DISPLAY_MODE_DROPDOWN) :?>
     <div class="field-select-billing">
         <select wire:model.defer="selectedIssuer" wire:select.debounce.750ms.blur>
             <?php foreach($magewire->issuers as $issuer): ?>
@@ -18,9 +18,9 @@ use Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\Ideal;
             <?php endforeach;?>
         </select>
     </div>
-    <?php elseif ($magewire->displayMode === Ideal::DISPLAY_MODE_LIST) :?>
+    <?php elseif ($magewire->displayMode === Pin::DISPLAY_MODE_LIST) :?>
     <div class="field-select-billing">
-        <span><?= $escaper->escapeHtml(__('Choose your bank')) ?></span>
+        <span><?= $escaper->escapeHtml(__('Choose the pin terminal')) ?></span>
         <ul class="mt-4">
             <?php foreach ($magewire->issuers as $issuer): ?>
                 <li class="flex mb-4">
