@@ -7,7 +7,8 @@ namespace Paynl\HyvaCheckout\Observer;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\View\Element\Template;
-use Magento\Payment\Model\Config as PaymentConfig;
+use Magento\Payment\Api\PaymentMethodListInterface;
+use Magento\Store\Model\StoreManagerInterface;
 use Paynl\HyvaCheckout\Helper\PaymentIcon;
 use Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\GenericPaynlMethodFactory;
 
@@ -18,21 +19,25 @@ class RegisterPaynlPaymentMethods implements ObserverInterface
     private const GENERIC_TEMPLATE = 'Paynl_HyvaCheckout::component/payment/method/generic_paynl_method.phtml';
     private const HYVA_CHECKOUT_HANDLE = 'hyva_checkout';
 
-    private PaymentConfig $paymentConfig;
+    private PaymentMethodListInterface $paymentMethodList;
+    private StoreManagerInterface $storeManager;
     private PaymentIcon $paymentIcon;
     private GenericPaynlMethodFactory $genericPaynlMethodFactory;
 
     /**
-     * @param PaymentConfig $paymentConfig
+     * @param PaymentMethodListInterface $paymentMethodList
+     * @param StoreManagerInterface $storeManager
      * @param PaymentIcon $paymentIcon
      * @param GenericPaynlMethodFactory $genericPaynlMethodFactory
      */
     public function __construct(
-        PaymentConfig $paymentConfig,
+        PaymentMethodListInterface $paymentMethodList,
+        StoreManagerInterface $storeManager,
         PaymentIcon $paymentIcon,
         GenericPaynlMethodFactory $genericPaynlMethodFactory
     ) {
-        $this->paymentConfig = $paymentConfig;
+        $this->paymentMethodList = $paymentMethodList;
+        $this->storeManager = $storeManager;
         $this->paymentIcon = $paymentIcon;
         $this->genericPaynlMethodFactory = $genericPaynlMethodFactory;
     }
@@ -59,9 +64,11 @@ class RegisterPaynlPaymentMethods implements ObserverInterface
         }
 
         $existingChildren = array_flip($parent->getChildNames());
+        $storeId = (int) $this->storeManager->getStore()->getId();
 
-        foreach (array_keys($this->paymentConfig->getActiveMethods()) as $code) {
-            if (!is_string($code) || strpos($code, self::METHOD_PREFIX) !== 0) {
+        foreach ($this->paymentMethodList->getActiveList($storeId) as $paymentMethod) {
+            $code = $paymentMethod->getCode();
+            if (strpos($code, self::METHOD_PREFIX) !== 0) {
                 continue;
             }
             $blockName = 'checkout.payment.method.' . $code;
