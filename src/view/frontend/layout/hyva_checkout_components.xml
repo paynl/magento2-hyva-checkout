@@ -26,6 +26,29 @@
                     </argument>
                 </arguments>
             </block>
+            <block name="checkout.payment.method.paynl_payment_metjebank"
+                   as="paynl_payment_metjebank"
+                   template="Paynl_HyvaCheckout::component/payment/method/pin.phtml">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\Metjebank
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="src" xsi:type="helper" helper="Paynl\HyvaCheckout\Helper\PaymentIcon::getIconUrl">
+                                <param name="methodCode">paynl_payment_metjebank</param>
+                            </item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="width" xsi:type="string">35px</item>
+                                <item name="loading" xsi:type="string">lazy</item>
+                                <item name="alt" xsi:type="helper" helper="Paynl\HyvaCheckout\Helper\PaymentIcon::getIconAltText">
+                                    <param name="methodCode">paynl_payment_metjebank</param>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
         </referenceBlock>
 
         <referenceContainer name="magewire.plugin.scripts">

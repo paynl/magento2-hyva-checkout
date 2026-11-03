@@ -30,7 +30,7 @@ use Paynl\HyvaCheckout\Magewire\Checkout\Payment\Method\Pin;
                     <label for="<?= $issuer['uniqueId'] ?>" class="flex space-x-4">
                         <?php if ($issuer['showLogo']): ?>
                         <div class="-mt-1">
-                            <img width="35px" class="payment-option-icon" src="<?= $issuer['logo'] ?>" alt="<?= $issuer['name'] ?>"/>
+                            <img width="35px" style="margin-right: 10px;" class="payment-option-icon" src="<?= $issuer['logo'] ?>" alt="<?= $issuer['name'] ?>"/>
                         </div>
                         <?php endif; ?>
                         <span><?= $issuer['visibleName'] ?></span>
